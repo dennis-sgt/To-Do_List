@@ -8,7 +8,7 @@ public class SaveAndGet implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    public <T extends HashMap<String, Queue<String>>> void saveObject(T object) {
+    public void saveObject(HashMap<String, Queue<String>> object) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream("lists.ser");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);

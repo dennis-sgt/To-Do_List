@@ -13,12 +13,13 @@ public class ToDoList {
             HashMap<String, Queue<String>> map = new HashMap<>();
             saveAndGet.saveObject(map);
             createList(name);
+        } else {
+            Queue<String> queue = new LinkedList<>();
+            HashMap<String, Queue<String>> map = saveAndGet.getMap();
+            map.put(name, queue);
+            saveAndGet.saveObject(map);
+            addToList(name);
         }
-        Queue<String> queue = new LinkedList<>();
-        HashMap<String, Queue<String>> map = saveAndGet.getMap();
-        map.put(name, queue);
-        saveAndGet.saveObject(map);
-        addToList(name);
     }
 
     public void addToList(String name) {
@@ -45,7 +46,7 @@ public class ToDoList {
                 case 1 -> addToList(name);
                 case 2 -> getList(name);
             }
-        } else {
+        } else if(!saveAndGet.hasMap()){
             createList(name);
         }
     }
