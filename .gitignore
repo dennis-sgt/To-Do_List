@@ -1,2 +1,11 @@
 # Project exclude paths
 /out/
+/.idea/.gitignore
+/list.ser
+/src/META-INF/MANIFEST.MF
+/.idea/misc.xml
+/.idea/modules.xml
+/To-Do.iml
+/.idea/artifacts/To_Do_jar.xml
+/.idea/uiDesigner.xml
+/.idea/vcs.xml
