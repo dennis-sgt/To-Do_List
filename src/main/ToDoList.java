@@ -19,7 +19,7 @@ public class ToDoList {
             saveAndGet.saveObject(map);
             int input;
 
-            try{
+            try {
                 System.out.println("1: Element zur Liste hinzufügen | 2: Menü");
                 input = scanner.nextInt();
                 switch (input) {
@@ -113,7 +113,7 @@ public class ToDoList {
                 System.out.println(count + ": " + string);
                 count++;
             }
-        }else if(map.get(name).isEmpty()) {
+        } else if (map.get(name).isEmpty()) {
             Scanner scanner = new Scanner(System.in);
 
             System.err.println("Liste ist leer.");
