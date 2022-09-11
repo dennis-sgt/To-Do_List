@@ -8,7 +8,7 @@ public class Program {
         ToDoList toDoList = new ToDoList();
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("1: Alle Listen anzeigen | 2: Liste anzeigen | 3: Element zu Liste hinzufügen | 4: Element von Liste entfernen | 5: Liste erstellen | 8: Liste löschen | 9: ALle Listen löschen | 0: Beenden");
+        System.out.println("1: Show all lists | 2: Show list | 3: Add entry to list | 4: Remove entry from list | 5: Create list | 8: Delete list | 9: Delete ALL lists | 0: Exit");
         int input;
         try {
             input = sc.nextInt();
@@ -21,7 +21,7 @@ public class Program {
                 case 2 -> {
                     if (saveAndGet.hasMap()) {
                         Scanner scanner = new Scanner(System.in);
-                        System.out.println("Name der gesuchten Liste:");
+                        System.out.println("Name of the list:");
                         toDoList.getAllLists();
                         String name = scanner.nextLine().strip();
                         toDoList.getList(name);
@@ -34,7 +34,7 @@ public class Program {
                 case 3 -> {
                     Scanner scanner = new Scanner(System.in);
                     if (saveAndGet.hasMap()) {
-                        System.out.println("Name der Liste:");
+                        System.out.println("Name of the list:");
                         toDoList.getAllLists();
                         String name = scanner.nextLine().strip();
                         toDoList.addToList(name);
@@ -46,7 +46,7 @@ public class Program {
                 case 4 -> {
                     Scanner scanner = new Scanner(System.in);
                     if (saveAndGet.hasMap() && !saveAndGet.getMap().isEmpty()) {
-                        System.out.println("Name der Liste:");
+                        System.out.println("Name of the list:");
                         toDoList.getAllLists();
                         String name = scanner.nextLine().strip();
                         toDoList.removeElement(name);
@@ -58,7 +58,7 @@ public class Program {
                 }
                 case 5 -> {
                     Scanner scanner = new Scanner(System.in);
-                    System.out.println("Name der neuen Liste:");
+                    System.out.println("Name of the new list:");
                     String name = scanner.nextLine().strip();
                     toDoList.createList(name);
                 }
@@ -66,7 +66,7 @@ public class Program {
                     Scanner scanner = new Scanner(System.in);
 
                     if (saveAndGet.hasMap()) {
-                        System.out.println("Name der Liste:");
+                        System.out.println("Name of the list:");
                         toDoList.getAllLists();
                         String name = scanner.nextLine().strip();
                         saveAndGet.deleteList(name);
@@ -78,7 +78,7 @@ public class Program {
                 }
                 case 9 -> {
                     Scanner scanner = new Scanner(System.in);
-                    System.out.println("1: Bestätigen | 2: Abbrechen");
+                    System.out.println("1: Confirm | 2: Cancel");
                     int in;
                     try {
                         in = scanner.nextInt();
@@ -89,24 +89,24 @@ public class Program {
                                 main(args);
                             }
                             case 2 -> {
-                                System.out.println("Löschen abgebrochen");
+                                System.out.println("Deletion canceled");
                                 main(args);
                             }
                         }
                     } catch (Exception e) {
-                        System.err.println("Falsche Eingabe. " + "(" + e + ")");
+                        System.err.println("Incorrect input.");
                         main(args);
                     }
                 }
                 case 0 -> System.exit(0);
 
                 default -> {
-                    System.err.println("Option nicht verfügbar.");
+                    System.err.println("Option not available.");
                     main(args);
                 }
             }
         } catch (Exception e) {
-            System.err.println("Fehler bei der Auswahl. " + "(" + e + ")");
+            System.err.println("Selection error.");
             main(args);
         }
     }

@@ -17,7 +17,7 @@ public class SaveAndGet implements Serializable {
             fileOutputStream.close();
             objectOutputStream.close();
         } catch (Exception e) {
-            System.err.println("Fehler beim Speicher der Liste.");
+            System.err.println("Error saving the list.");
         }
     }
 
@@ -45,10 +45,10 @@ public class SaveAndGet implements Serializable {
         try {
             new FileOutputStream("lists.ser").close();
         } catch (Exception e) {
-            System.err.println("Fehler beim Löschen aller Listen");
+            System.err.println("Error when deleting all lists");
         }
 
-        System.out.println("ALLE LISTEN GELÖSCHT.");
+        System.out.println("ALL LISTS DELETED.");
     }
 
     public void deleteList(String name) {
@@ -58,12 +58,12 @@ public class SaveAndGet implements Serializable {
                 map.remove(name);
                 saveObject(map);
             } catch (Exception e) {
-                System.err.println("Fehler beim Löschen der Liste.");
+                System.err.println("Error deleting the list.");
             }
         } else {
             deleteMap();
         }
-        System.out.println("Liste erfolgreich gelöscht");
+        System.out.println("List successfully deleted");
     }
 
     public HashMap<String, Queue<String>> getMap() {
@@ -79,10 +79,10 @@ public class SaveAndGet implements Serializable {
             return map;
         } catch (Exception e) {
             if (!hasMap()) {
-                System.err.println("Keine Listen vorhanden.");
+                System.err.println("No lists available.");
                 Program.main(null);
             } else {
-                System.err.println("Fehler beim Anzeigen der Liste.");
+                System.err.println("Error retrieving the list.");
                 Program.main(null);
             }
         }
