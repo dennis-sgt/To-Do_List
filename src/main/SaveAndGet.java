@@ -24,14 +24,15 @@ public class SaveAndGet implements Serializable {
     }
 
     public boolean hasMap() {
-        HashMap<String, Queue<String>> map = new HashMap<>();
         boolean result;
 
         try {
             FileInputStream fileInputStream = new FileInputStream("lists.ser");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-            map = (HashMap<String, Queue<String>>) objectInputStream.readObject();
+            @SuppressWarnings("unchecked")
+            HashMap<String, Queue<String>> map = (HashMap<String, Queue<String>>) objectInputStream.readObject();
+            map.clone();
             fileInputStream.close();
             objectInputStream.close();
             result = true;
@@ -49,7 +50,7 @@ public class SaveAndGet implements Serializable {
             System.err.println("Fehler beim Löschen aller Listen " + "(" + e + ")");
         }
 
-        System.out.println("Alle Listen gelöscht.");
+        System.out.println("ALLE LISTEN GELÖSCHT.");
     }
 
     public void deleteList(String name) {
@@ -68,13 +69,12 @@ public class SaveAndGet implements Serializable {
     }
 
     public HashMap<String, Queue<String>> getMap() {
-        HashMap<String, Queue<String>> map = new HashMap<>();
-
         try {
             FileInputStream fileInputStream = new FileInputStream("lists.ser");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-            map = (HashMap<String, Queue<String>>) objectInputStream.readObject();
+            @SuppressWarnings("unchecked")
+            HashMap<String, Queue<String>> map = (HashMap<String, Queue<String>>) objectInputStream.readObject();
             fileInputStream.close();
             objectInputStream.close();
 
@@ -88,6 +88,6 @@ public class SaveAndGet implements Serializable {
                 Program.main(null);
             }
         }
-        return map;
+        return null;
     }
 }
