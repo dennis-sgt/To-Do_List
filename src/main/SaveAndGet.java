@@ -17,10 +17,8 @@ public class SaveAndGet implements Serializable {
             fileOutputStream.close();
             objectOutputStream.close();
         } catch (Exception e) {
-            System.err.println("Fehler beim Speicher der Liste. " + "(" + e + ")");
+            System.err.println("Fehler beim Speicher der Liste.");
         }
-
-        System.out.println("Objekt gespeichert. " + "(" + object.toString() + ")");
     }
 
     public boolean hasMap() {
@@ -47,7 +45,7 @@ public class SaveAndGet implements Serializable {
         try {
             new FileOutputStream("lists.ser").close();
         } catch (Exception e) {
-            System.err.println("Fehler beim Löschen aller Listen " + "(" + e + ")");
+            System.err.println("Fehler beim Löschen aller Listen");
         }
 
         System.out.println("ALLE LISTEN GELÖSCHT.");
@@ -60,7 +58,7 @@ public class SaveAndGet implements Serializable {
                 map.remove(name);
                 saveObject(map);
             } catch (Exception e) {
-                System.err.println("Fehler beim Löschen der Liste. " + "(" + e + ")");
+                System.err.println("Fehler beim Löschen der Liste.");
             }
         } else {
             deleteMap();
@@ -81,10 +79,10 @@ public class SaveAndGet implements Serializable {
             return map;
         } catch (Exception e) {
             if (!hasMap()) {
-                System.err.println("Keine Listen vorhanden. " + "(" + e + ")");
+                System.err.println("Keine Listen vorhanden.");
                 Program.main(null);
             } else {
-                System.err.println("Fehler beim Anzeigen der Liste. " + "(" + e + ")");
+                System.err.println("Fehler beim Anzeigen der Liste.");
                 Program.main(null);
             }
         }

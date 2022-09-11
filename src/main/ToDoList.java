@@ -31,7 +31,7 @@ public class ToDoList {
                     }
                 }
             } catch (Exception e) {
-                System.err.println("Fehler bei der Auswahl. " + "(" + e + ")");
+                System.err.println("Fehler bei der Auswahl.");
                 Program.main(null);
             }
         }
@@ -66,7 +66,7 @@ public class ToDoList {
                     }
                 }
             } catch (Exception e) {
-                System.err.println("Falsche Eingabe. " + "(" + e + ")");
+                System.err.println("Liste mit angegebenem Namen nicht vorhanden.");
             }
         } else if (!saveAndGet.hasMap()) {
             createList(name);
@@ -132,7 +132,7 @@ public class ToDoList {
                     }
                 }
             } catch (Exception e) {
-                System.err.println("Fehler bei der Auswahl " + "(" + e + ")");
+                System.err.println("Falsche Eingabe");
                 Program.main(null);
             }
         }
