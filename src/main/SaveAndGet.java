@@ -23,8 +23,9 @@ public class SaveAndGet implements Serializable {
         System.out.println("Objekt gespeichert. " + "(" + object.toString() + ")");
     }
 
-    public boolean hasMap(){
+    public boolean hasMap() {
         HashMap<String, Queue<String>> map = new HashMap<>();
+        boolean result;
 
         try {
             FileInputStream fileInputStream = new FileInputStream("lists.ser");
@@ -33,10 +34,12 @@ public class SaveAndGet implements Serializable {
             map = (HashMap<String, Queue<String>>) objectInputStream.readObject();
             fileInputStream.close();
             objectInputStream.close();
+            result = true;
         } catch (Exception e) {
-            return false;
+            result = false;
         }
-        return true;
+
+        return result;
     }
 
     public void deleteMap() {
@@ -49,8 +52,9 @@ public class SaveAndGet implements Serializable {
         System.out.println("Alle Listen gelöscht.");
     }
 
-    public void deleteList(HashMap<String, Queue<String>> map, String name) {
-        if(map.size() > 1) {
+    public void deleteList(String name) {
+        HashMap<String, Queue<String>> map = getMap();
+        if (map.size() > 1) {
             try {
                 map.remove(name);
                 saveObject(map);
@@ -62,6 +66,7 @@ public class SaveAndGet implements Serializable {
         }
         System.out.println("Liste erfolgreich gelöscht");
     }
+
     public HashMap<String, Queue<String>> getMap() {
         HashMap<String, Queue<String>> map = new HashMap<>();
 
@@ -75,7 +80,13 @@ public class SaveAndGet implements Serializable {
 
             return map;
         } catch (Exception e) {
-            System.err.println("Keine Liste vorhanden oder Fehler beim Anzeigen der Liste. " + "(" + e + ")");
+            if (!hasMap()) {
+                System.err.println("Keine Listen vorhanden. " + "(" + e + ")");
+                Program.main(null);
+            } else {
+                System.err.println("Fehler beim Anzeigen der Liste. " + "(" + e + ")");
+                Program.main(null);
+            }
         }
         return map;
     }

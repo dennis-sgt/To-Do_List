@@ -27,7 +27,7 @@ public class ToDoList {
         SaveAndGet saveAndGet = new SaveAndGet();
         HashMap<String, Queue<String>> map = saveAndGet.getMap();
 
-        if(!map.isEmpty() && saveAndGet.hasMap()) {
+        if (!map.isEmpty() && saveAndGet.hasMap()) {
             System.out.println("Was soll zur Liste hinzugefügt werden?");
             String element = scanner.nextLine();
             map.put(name, map.get(name)).add(element);
@@ -39,15 +39,48 @@ public class ToDoList {
             try {
                 input = scanner.nextInt();
             } catch (Exception e) {
-                System.err.println("Falsche Eingabe. " + "(" + e + ")");
+                System.err.println("Falsche Eingabe. " + "(" + e + " Line: " + e.getStackTrace()[0].getLineNumber() + ")");
             }
 
             switch (input) {
                 case 1 -> addToList(name);
-                case 2 -> getList(name);
+                case 2 -> {
+                    getList(name);
+                    Program.main(null);
+                }
             }
-        } else if(!saveAndGet.hasMap()){
+        } else if (!saveAndGet.hasMap()) {
             createList(name);
+        }
+    }
+
+    public void removeElement(String name) {
+        SaveAndGet saveAndGet = new SaveAndGet();
+        HashMap<String, Queue<String>> map = saveAndGet.getMap();
+
+        if (saveAndGet.hasMap() && !map.isEmpty()) {
+            Scanner scanner = new Scanner(System.in);
+
+            try {
+                getList(name);
+            } catch (Exception e) {
+                System.err.println("Liste mit eingegebenem Namen nicht vorhanden.");
+                Program.main(null);
+            }
+            System.out.println("Welcher Eintrag soll entfernt werden: ");
+            String element = scanner.nextLine();
+            if (map.get(name).contains(element)) {
+                map.get(name).remove(element);
+                saveAndGet.saveObject(map);
+                System.out.println("Element erfolgreich entfernt.");
+                Program.main(null);
+            } else {
+                System.err.println("Element nicht in der Liste");
+                Program.main(null);
+            }
+        } else if (map.isEmpty()) {
+            System.err.println("Liste ist leer.");
+            Program.main(null);
         }
     }
 
@@ -55,7 +88,7 @@ public class ToDoList {
         SaveAndGet saveAndGet = new SaveAndGet();
         HashMap<String, Queue<String>> map = saveAndGet.getMap();
 
-        if(saveAndGet.hasMap() && !map.isEmpty()) {
+        if (saveAndGet.hasMap() && !map.isEmpty()) {
             int count = 1;
             for (String string : map.get(name)) {
                 System.out.println(count + ": " + string);
@@ -73,10 +106,6 @@ public class ToDoList {
             for (String string : map.keySet()) {
                 System.out.println(count + ": " + string);
                 count++;
-            }
-
-            if (map.isEmpty()) {
-                System.out.println("Keine Listen vorhanden");
             }
         }
     }
